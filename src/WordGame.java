@@ -15,8 +15,16 @@ public class WordGame {
 		
 		
 		//pick the work
-		String answer = words[rand.nextInt(size+1) ];
+		int center = rand.nextInt(size+1); //choice location
+		int upper =rand.nextInt(size-center+1); //0 to center
+		int lower =center + rand.nextInt(size-center+1); // center to size
+		String answer = words[center];
+		String upperBound = words[upper];
+		String lowerBound = words[lower];
 		System.out.println("The word is " + answer);
+		System.out.println("the word is between " +upperBound +" and "+ lowerBound);
+		//pick the random bounds
+		
 		JFrame main = new JFrame();
 		
 	}
