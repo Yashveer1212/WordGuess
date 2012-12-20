@@ -9,6 +9,10 @@ public Library(){
 	public String[] getmWords() {
 	return mWords;
 }
+	
+	public int getSize(){
+		return mWords.length;
+	}
 
 
 
