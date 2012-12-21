@@ -20,6 +20,9 @@ public class WordGame {
 	static Map<String, Object> map = new HashMap<String, Object>();
 
 	public static void main(String[] args) {
+		System.out.println("Guess a 5 letter m word!");
+		System.out.println("The word will be between the given bounds.");
+		System.out.println("You may guess as many times as you like.");
 		Scanner scan = new Scanner(System.in);
 		boolean play = true;
 		boolean real = false;
@@ -115,6 +118,7 @@ public class WordGame {
 	}
 
 	public static void updateBounds(String guess) {
+		//bounds should only update if the work makes the bounds smaller! 
 		int their_guess = (Integer)map.get(guess);
 		int the_answer = (Integer)map.get(answer);
 		
