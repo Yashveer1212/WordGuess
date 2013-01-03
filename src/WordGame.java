@@ -21,44 +21,45 @@ public class WordGame {
 	static Map<String, Object> map = new HashMap<String, Object>();
 
 	public static void main(String[] args) {
-		System.out.println("Guess a 5 letter m word!");
+		System.out.println("Guess a 5 letter m-word!");
 		System.out.println("The word will be between the given bounds.");
 		System.out.println("You may guess as many times as you like.");
+		System.out.println("Type \"quit\" to end the game.");
+
 		Scanner scan = new Scanner(System.in);
 		boolean play = true;
 		boolean real = false;
 
 		// load library & create has
 		words = mlib.getmWords();
-		System.out.println("There are " + size + " words available");
+		// System.out.println("REMOVE ME There are " + size +
+		// " words available");
 		int count = 0;
 		for (int i = 0; i < size; i++) {
 			map.put(words[count], new Integer(count));// key value pair
 			count++;
 		}
 
-		// System.out.println("Testing that "+ map.get("maker") + " exits but "
-		// + map.get("dfafdad")+ " doesnt");
-
-		// pick the work
-		center = rand.nextInt(size + 1); // choice location
+		// pick the word
 		answer = words[center];
-		 System.out.println("REMOVE ME The word is " + answer+"("+center+")");
-
+		// System.out.println("REMOVE ME The word is " + answer+"("+center+")");
 		// pick the random bounds
-		int upper = rand.nextInt(center - 0 + 1); // 0 to center
-		int lower = center + rand.nextInt(size - center + 1); // center to size
 		upperBound = words[upper];
 		lowerBound = words[lower];
-		System.out.println("The word is between " + upperBound + "("+upper +")"+" and "
-				+ lowerBound+"("+lower +")");
+		System.out.println("The word is between " + upperBound + " and "
+				+ lowerBound);
 		System.out.println("What is your guess?");
 		String guess = scan.nextLine();
-		int guessNum = (Integer) map.get(guess);
-		System.out.println("You guessed: " + guess+"("+guessNum+")");
-
+		int guessNum = -1;
+		if (map.get(guess) != null) {
+			guessNum = (Integer) map.get(guess);
+			if (guessNum != -1)
+				System.out.println("You guessed: " + guess);
+		} else {
+			real = false;
+		}
 		while (play) {
-		
+
 			// error checking
 			if (guess == null) {
 				System.out.println("You have to guess something!");
@@ -73,7 +74,7 @@ public class WordGame {
 			}
 
 			if (map.get(guess) == null) {
-				System.out.println("That is not a real word");
+				System.out.println("That is not a  m-word");
 				real = false;
 			} else {
 				real = true;
@@ -93,17 +94,24 @@ public class WordGame {
 					System.out.println("Starting a new game!");
 					newGame(words);
 				}
-			} else{
+			} else {
 				System.out.println("That is incorrect. Please guess Again!");
+
 			}
-			//update bounds
+			// update bounds
 			if (real) {
-				updateBounds(guessNum,upper, lower, center );
+				updateBounds(guessNum, upper, lower, center);
 			}
+			System.out.println("The word is between " + upperBound + " and "
+					+ lowerBound);
 			guess = scan.nextLine();
-			guessNum = (Integer) map.get(guess);
-			System.out.println("You guessed: " + guess+"("+guessNum+")");
-		//	System.out.println("You guessed: " + guess);
+			if (map.get(guess) != null) {
+				guessNum = (Integer) map.get(guess);
+			} else {
+				guessNum = -1;
+			}
+			if (guessNum != -1)
+				System.out.println("You guessed: " + guess);
 
 		}
 
@@ -119,25 +127,26 @@ public class WordGame {
 		lower = center + rand.nextInt(size - center + 1); // center to size
 		upperBound = words[upper];
 		lowerBound = words[lower];
-		System.out.println("The word is between " + upperBound + "("+upper +")"+" and "
-				+ lowerBound+"("+lower +")");
+	//	System.out.println("The word is between " + upperBound + " and " + lowerBound);
 		System.out.println("What is your guess?");
 	}
 
-	public static void updateBounds(int guess, int upper, int lower, int answer) {
+	public static void updateBounds(int guess, int oldUpper, int oldLower,
+			int answer) {
 
 		// bounds should only update if the work makes the bounds smaller!
-	
-		if(guess< answer && guess > upper){
+
+		if (guess < answer && guess > oldUpper) {
 			setUpper(words[guess], guess);
 		}
-		
-		if(guess> answer && guess < lower){
+
+		if (guess > answer && guess < oldLower) {
 			setLower(words[guess], guess);
 		}
 
-		System.out.println("The word is between " + upperBound + "("+upper +")"+" and "
-				+ lowerBound+"("+lower +")");
+		// System.out.println("The word is between " + upperBound + "("+upper
+		// +")"+" and "
+		// + lowerBound+"("+lower +")");
 
 	}
 
