@@ -14,6 +14,7 @@ public class GamePanel extends JPanel {
 	JLabel upper;
 	JLabel lower;
 	JLabel score;
+	JLabel info;
 	JLabel error;
 	String lWord;
 	String uWord;
@@ -21,6 +22,7 @@ public class GamePanel extends JPanel {
 	JButton submit;
 	JRadioButton yes;
 	JRadioButton no;
+	int scoreNum = 0;
 	private String answer;
 	private Map<String, Object> map;
 
@@ -30,7 +32,7 @@ public class GamePanel extends JPanel {
 		lWord = lowerWord;
 		uWord = upperWord;
 		setBackground(Color.white);
-		setPreferredSize(new Dimension(600, 210));
+		setPreferredSize(new Dimension(570, 210));
 		setFont(new Font("Courier", Font.BOLD, 20));
 
 		background = new JTextArea("Guess a 5 letter m-word!" + "\n"
@@ -46,6 +48,11 @@ public class GamePanel extends JPanel {
 
 		instruct = new JLabel("What is your guess?");
 		instruct.setFont(new Font("Courier", Font.BOLD, 20));
+		
+		score = new JLabel("Score: "+scoreNum);
+
+		info = new JLabel("");
+
 
 		error = new JLabel("");
 		instruct.setFont(new Font("Courier", Font.BOLD, 20));
@@ -53,6 +60,8 @@ public class GamePanel extends JPanel {
 		field = new JTextField(5);
 
 		submit = new JButton("Submit");
+		submit.setFont(new Font("Courier", Font.BOLD, 20));
+
 		submit.addActionListener(new ButtonListener());
 		
 		yes = new JRadioButton("Yes", true);
@@ -67,6 +76,7 @@ public class GamePanel extends JPanel {
 		ButtonGroup group = new ButtonGroup();
 		group.add(yes);
 		group.add(no);
+		group.clearSelection();
 
 
 
@@ -77,6 +87,8 @@ public class GamePanel extends JPanel {
 
 		add(field);
 		add(submit);
+		add(score);
+		add(info);
 		add(error);
 		add(yes);
 		add(no);
@@ -123,7 +135,8 @@ public class GamePanel extends JPanel {
 					}
 
 					if (guess.equals(answer)) {
-						error.setText("That is right! Congrats!");
+						score.setText("Score: "+ ++scoreNum);
+						info.setText("That is right! Congrats! Do you want to play again? Click Yes or No!");
 						System.out.println("Do you wanna play again? Enter Yes or No!");
 
 						
@@ -140,7 +153,7 @@ public class GamePanel extends JPanel {
 							newGame(words);
 						}*/
 					} else {
-						error.setText("That is incorrect. Please guess Again!");
+						//error.setText("That is incorrect. Please guess Again!");
 
 					}
 						
