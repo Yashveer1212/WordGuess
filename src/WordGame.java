@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 
 /**
  * @author Jasmine
- *
+ * 
  */
 public class WordGame {
 
@@ -23,15 +23,13 @@ public class WordGame {
 	public static String upperBound = "";
 	public static String lowerBound = "";
 	static Map<String, Object> map = new HashMap<String, Object>();
-	
 
 	public static void main(String[] args) {
 		System.out.println("Guess a 5 letter m-word!");
 		System.out.println("The word will be between the given bounds.");
 		System.out.println("You may guess as many times as you like.");
 		System.out.println("Type \"quit\" to end the game.");
-		
-		
+
 		Scanner scan = new Scanner(System.in);
 		boolean play = true;
 		boolean real = false;
@@ -52,18 +50,15 @@ public class WordGame {
 		// pick the random bounds
 		upperBound = words[upper];
 		lowerBound = words[lower];
-		
+
 		JFrame frame = new JFrame("Word Guess Game!");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		GamePanel panel = new GamePanel(upperBound,lowerBound, answer, map);
+		GamePanel panel = new GamePanel(upperBound, lowerBound, answer, map);
 		frame.add(panel);
 		frame.pack();
 		frame.setVisible(true);
 
-	
-		System.out.println("The word is between " + upperBound + " and "
-				+ lowerBound);
 		System.out.println("What is your guess?");
 		String guess = scan.nextLine();
 		int guessNum = -1;
@@ -158,7 +153,6 @@ public class WordGame {
 			setLower(words[guess], guess);
 		}
 
-	
 	}
 
 	public static void setUpper(String newUpper, int guessedNum) {

@@ -33,7 +33,6 @@ public class GamePanel extends JPanel {
 	public static Random rand = new Random(size);
 	ButtonGroup group = new ButtonGroup();
 
-
 	public GamePanel(String upperWord, String lowerWord, String realWord,
 			Map<String, Object> wordMap) {
 		answer = realWord;
@@ -149,7 +148,8 @@ public class GamePanel extends JPanel {
 
 				if (guess.equals(answer)) {
 					score.setText("Score: " + ++scoreNum);
-					info.setText("That is right! Congrats! Do you want to play again? Click Yes or No!"+ "\n");
+					info.setText("That is right! Congrats! Do you want to play again? Click Yes or No!"
+							+ "\n");
 
 					yes.setVisible(true);
 					no.setVisible(true);
@@ -177,13 +177,13 @@ public class GamePanel extends JPanel {
 						+ lWord);
 
 			}
-			
-			if(ae.getSource() == yes){
+
+			if (ae.getSource() == yes) {
 				resetGame();
 
 			}
-			
-			if(ae.getSource() == no){
+
+			if (ae.getSource() == no) {
 				System.exit(0);
 			}
 		}
@@ -221,10 +221,11 @@ public class GamePanel extends JPanel {
 
 		// pick the random bounds
 		upperNum = rand.nextInt(answerNum - 0 + 1); // 0 to center
-		lowerNum = answerNum + rand.nextInt(size - answerNum + 1); // center to size
+		lowerNum = answerNum + rand.nextInt(size - answerNum + 1); // center to
+																	// size
 		uWord = words[upperNum];
 		lWord = words[lowerNum];
-		
+
 		upper.setText("Current Bounds Upper:" + uWord + "   ");
 		lower.setText("Lower:" + lWord);
 		group.clearSelection();
@@ -232,11 +233,6 @@ public class GamePanel extends JPanel {
 		no.setVisible(false);
 		error.setText("");
 		info.setText("");
-
-
-
-
-
 
 	}
 }
