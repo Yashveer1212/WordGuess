@@ -2,6 +2,10 @@ import java.util.*;
 
 import javax.swing.JFrame;
 
+/**
+ * @author Jasmine
+ *
+ */
 public class WordGame {
 
 	public static Library mlib = new Library();
@@ -52,7 +56,7 @@ public class WordGame {
 		JFrame frame = new JFrame("Word Guess Game!");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		GamePanel panel = new GamePanel(upperBound,lowerBound);
+		GamePanel panel = new GamePanel(upperBound,lowerBound, answer, map);
 		frame.add(panel);
 		frame.pack();
 		frame.setVisible(true);
