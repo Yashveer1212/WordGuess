@@ -136,14 +136,12 @@ public class WordGame {
 	public static void newGame(String[] words) {
 		center = rand.nextInt(size + 1); // choice location
 		answer = words[center];
-		// System.out.println("REMOVE ME!! The word is " + answer);
 
 		// pick the random bounds
 		upper = rand.nextInt(center - 0 + 1); // 0 to center
 		lower = center + rand.nextInt(size - center + 1); // center to size
 		upperBound = words[upper];
 		lowerBound = words[lower];
-	//	System.out.println("The word is between " + upperBound + " and " + lowerBound);
 		System.out.println("What is your guess?");
 	}
 
@@ -160,10 +158,7 @@ public class WordGame {
 			setLower(words[guess], guess);
 		}
 
-		// System.out.println("The word is between " + upperBound + "("+upper
-		// +")"+" and "
-		// + lowerBound+"("+lower +")");
-
+	
 	}
 
 	public static void setUpper(String newUpper, int guessedNum) {
